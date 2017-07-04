@@ -1,0 +1,205 @@
+
+    #Java 8
+
+    echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" 
+    | tee /etc/apt/sources.list.d/webupd8team-java.list
+
+    
+
+    echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty 
+    main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list
+
+    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
+
+    apt-get update
+
+    apt-get install oracle-java8-installer
+    
+    java -version
+
+-----------------------------------------------------------------------------------------------------
+
+    #NetBeans
+
+        wget http://download.netbeans.org/netbeans/8.2/final/zip/
+        netbeans-8.2-201609300101.zip -O netbeans.zip
+
+        sudo unzip netbeans.zip -d /opt/
+
+        sudo mv /opt/netbeans*/ /opt/netbeans/
+
+        sudo ln -sf /opt/netbeans/bin/netbeans /usr/bin/netbeans
+
+        echo -e '[Desktop Entry]
+        \n Version=1.0
+        \n Name=netbeans
+        \n Exec=/opt/netbeans/bin/netbeans
+        \n Icon=/opt/netbeans/nb/netbeans.png
+        \n Type=Application
+        \n Categories=Application' | sudo tee /usr/share/applications/netbeans.desktop
+
+    #Remover netBeans
+
+    sudo rm -Rf /opt/netbeans*
+
+    sudo rm -Rf /usr/bin/netbeans
+    
+    sudo rm -Rf /usr/share/applications/netbeans.desktop
+
+-----------------------------------------------------------------------------------------------------------
+
+
+    #Eclispse
+
+    32bits
+
+        wget http://eclipse.c3sl.ufpr.br/technology/epp/downloads/release
+        /neon/R/eclipse-jee-neon-R-linux-gtk.tar.gz -O eclipse.tar.gz
+
+    64bits
+        
+        wget http://eclipse.c3sl.ufpr.br/technology/epp/downloads/release
+        /neon/R/eclipse-jee-neon-R-linux-gtk-x86_64.tar.gz -O eclipse.tar.gz
+
+    
+        sudo tar -zxvf eclipse.tar.gz -C /opt/
+
+        sudo mv /opt/eclipse*/ /opt/eclipse
+
+        sudo wget https://dl2.macupdate.com/images/icons128/11662.png -O /opt/eclipse/eclipse.png
+
+        echo -e '[Desktop Entry]\n Version=1.0\n 
+        Name=eclipse\n
+        Exec=/opt/eclipse/eclipse\n 
+        Icon=/opt/eclipse/eclipse.png\n 
+        Type=Application\n Categories=Application' | sudo tee /usr/share/applications/eclipse.desktop
+
+        sudo chmod +x /usr/share/applications/eclipse.desktop
+        
+        cp /usr/share/applications/eclipse.desktop  ~/Área\ de\ Trabalho/
+
+        cp /usr/share/applications/eclipse.desktop ~/Desktop
+
+    #Remover
+        
+        rm -Rf /opt/eclipse/
+        
+        rm -Rf /usr/share/applications/eclipse.desktop
+----------------------------------------------------------------------------------------------------------------------
+
+        #Xampp
+
+    32bits
+        wget https://ufpr.dl.sourceforge.net/project/xampp/XAMPP%20Linux/7.0.8/xampp-
+        linux-7.0.8-0-installer.run -O xampp-installer.run
+
+    64bits
+        wget https://ufpr.dl.sourceforge.net/project/xampp/XAMPP%20Linux/7.1.6/xampp-
+        linux-x64-7.1.6-0-installer.run -O xampp-installer.run
+    
+    chmod +x xampp-installer.run
+
+    sudo ./xampp-installer.run
+
+    echo -e '[Desktop Entry]\n
+    Version=1.0\n
+    Name=xampp\n 
+    Exec=gksudo /opt/lampp/manager-linux.run\n 
+    Icon=/opt/lampp/icons/world1.png\n 
+    Type=Application\n Categories=Application' | sudo tee /usr/share/applications/xampp.desktop
+       
+    echo -e '[Desktop Entry]\n 
+    Version=1.0\n Name=xampp\n 
+    Exec=gksudo /opt/lampp/manager-linux-x64.run\n 
+    Icon=/opt/lampp/icons/world1.png\n 
+    Type=Application\n Categories=Application' | sudo tee /usr/share/applications/xampp.desktop 
+
+    sudo apt-get install gksu
+
+    sudo chmod +x /usr/share/applications/xampp.desktop
+
+    cp /usr/share/applications/xampp.desktop  ~/Área\ de\ Trabalho/
+
+    cp /usr/share/applications/xampp.desktop ~/Desktop
+
+    #Start xampp                        #Stop xampp
+
+    sudo /opt/lampp/lampp start          sudo /opt/lampp/lampp stop
+
+
+    #Remover
+
+    sudo /opt/lampp/lampp stop
+
+    sudo rm -rf /opt/lampp
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+        #MysqlWorkBanch
+
+        wget https://cdn.mysql.com//Downloads/MySQLGUITools/mysql-workbench-community-6.2.5-1ubu1404-amd64.deb -O mysql-workbench-community.deb
+
+        wget https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-6.2.5-1ubu1410-amd64.deb -O mysql-workbench-community.deb
+
+        wget http://cdn.mysql.com/Downloads/MySQLGUITools/mysql-workbench-community-6.3.9-1ubuntu16.04-amd64.deb -O mysql-workbench-community.deb
+        
+        wget http://cdn.mysql.com/Downloads/MySQLGUITools/mysql-workbench-community-6.3.9-1ubuntu16.10-amd64.deb -O mysql-workbench-community.deb
+
+        sudo dpkg -i mysql-workbench-community.deb
+
+        sudo apt-get -f install
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+    #PostGres
+        
+     aptitude install postgresql
+        
+     su postgres
+    
+     $ psql
+        
+    postgres=# ALTER USER postgres WITH PASSWORD 'qualquersenha';
+
+    postgres=# CREATE USER usuario NOCREATEDB NOSUPERUSER NOCREATEROLE PASSWORD 'senha';
+        
+    postgres=# CREATE DATABASE minhabase;
+    
+    emacs /etc/postgresql/8.4/main/pg_hba.conf
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+    #VirtualBox
+
+    - 32 bits
+        
+        wget http://download.virtualbox.org/virtualbox/5.1.2/VirtualBox-5.1.2-108956-Linux_x86.run -O virtualbox.run
+        
+    -64 bits
+        
+        wget http://download.virtualbox.org/virtualbox/5.1.2/VirtualBox-5.1.2-108956-Linux_amd64.run -O virtualbox.run
+        
+    -tornando o arquivo executável
+    
+        chmod +x virtualbox.run
+    
+    -iniciando a instalção
+    
+        sudo ./virtualbox.run
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    #Maven
+        
+    sudo apt-cahe search maven
+
+    sudo apt-get install maven2
+    
+    sudo mvn -version
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    #Git
+        
+        $ apt-get install git
+
+        
